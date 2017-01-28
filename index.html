@@ -1,0 +1,62 @@
+<html>
+	<head>
+		<title>Kyle Schmolze</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400" rel="stylesheet">
+		<link rel="stylesheet" href="css/normalize.css" />
+		<link rel="stylesheet" href="css/index.css" />
+	</head>
+	<body>
+    <header class='visible-mobile'>
+      <h1>Kyle Schmolze</h1>
+    </header>
+    <div class='img visible-mobile'>
+      <img src='img/kyle.jpg' />
+    </div>
+    <section class='group'>
+      <div class='main'>
+        <h1 class='hidden-mobile'>Kyle Schmolze</h1>
+        <h3>Companies</h3>
+        <p><a href='https://www.groupmuse.com'>Groupmuse</a></p>
+        <p><a href='https://www.jumpoffcampus.com'>JumpOffCampus</a></p>
+        <h3>Side Projects</h3>
+        <p><a href='https://www.plasticdisco.com'>Plastic Disco (2016)</a></p>
+        <p><a href='https://www.ridewithbernie.com'>Ride with Bernie(2016)</a></p>
+        <p><a href='http://www.bostrain.com'>Bostrain (2013)</a></p>
+        <p><a href='http://www.thumbwar.me'>Thumbwar (2012)</a></p>
+        <h3>Elsewhere</h3>
+        <p><a href='http://www.medium.com/kyletns'>Medium</a></p>
+        <p><a href='http://www.github.com/kyletns'>Github</a></p>
+      </div>
+      <div class='hanging-portrait sticky'>
+        <img src='img/kyle.jpg' />
+      </div>
+    </section>
+
+    <footer>
+      <h3>About me</h3>
+      <p>
+        It took me a while to realize that I’m very straightforwardly an entrepreneur.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      </p>
+      <p>
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+      <p>
+        If you have any questions, definitely just 
+        <a href='mailto:kyletns@gmail.com'>hit me up</a>.
+      </p>
+    </footer>
+    <script src="js/stickyfill.min.js"></script>
+    <script type='text/javascript'>
+      var stickyElements = document.getElementsByClassName('sticky');
+
+      for (var i = stickyElements.length - 1; i >= 0; i--) {
+          Stickyfill.add(stickyElements[i]);
+      }
+    </script>
+  </body>
+</html>

@@ -13,17 +13,13 @@ header {
   text-align: center;
 }
 
-header h1 {
-  font-size: 35px;
-}
-
-section .main {
+.main {
   width: 50%;
   float: left;
   padding: 74px;
 }
 
-section .hanging-portrait {
+.desktop-portrait {
   width: 50%;
   float: left;
   text-align: center;
@@ -37,13 +33,13 @@ footer a { text-decoration: underline; }
   
 img {
   width: 100%;
-  max-width: 400px;
 }
 
 h1 {
   font-size: 54px;
   margin: 0px;
 }
+h1.mobile-header { display: none; }
 
 h3 {
   font-size: 16px;
@@ -70,31 +66,41 @@ a:hover { text-decoration: underline; }
 
 h1, h3, p, a { font-weight: 300; }  
 
-.hidden-mobile { display: block; }
-.visible-mobile { display: none; }
+.mobile-portrait { display: none; }
+.desktop-portrait { display: block; }
 
-/*
 @media (max-width: 1020px) {
-  section .main { padding: 54px; }
+  .main, footer { padding: 54px; }
   h1 { font-size: 44px; }
-  .hanging-portrait { padding: 54px 36px; }
-  .hanging-portrait img { border-radius: 12px; }
+  .desktop-portrait { padding: 54px 36px; }
+  [class*=portrait] img { border-radius: 12px; }
+
 }
-*/
-section .main { padding: 54px; }
-h1 { font-size: 44px; }
-.hanging-portrait { padding: 54px 36px; }
-.hanging-portrait img { border-radius: 12px; }
 
 @media (max-width: 800px) {
-  .hidden-mobile { display: none; }
-  .visible-mobile { display: block; }
-  section .main {
+  h1, .main, footer { padding: 40px; }
+
+  h1.mobile-header { display: block; text-align: center; }
+  .mobile-portrait { display: block; text-align: center; }
+  .mobile-portrait img { max-width: 400px; }
+
+  .main {
     width: 100%;
     float: none;
     padding: 40px;
   }
+  .desktop-portrait { display: none; }
   footer { padding: 40px; }
+}
+
+
+
+@media (max-width: 500px) {
+  h1, .main, footer { padding: 26px; }
+  h1 { font-size: 37px; }
+  .main { padding-top: 46px; padding-bottom: 36px; }
+  .mobile-portrait img { max-width: 100%; border-radius: 0px; }
+  footer { padding-top: 56px; }
 }
 
 

@@ -8,15 +8,13 @@
 		<link rel="stylesheet" href="css/index.css" />
 	</head>
 	<body>
-    <header class='visible-mobile'>
-      <h1>Kyle Schmolze</h1>
-    </header>
-    <div class='img visible-mobile'>
-      <img src='img/kyle.jpg' />
-    </div>
     <section class='group'>
+      <h1 class='mobile-header'>Kyle Schmolze</h1>
+      <div class='mobile-portrait'>
+        <img src='img/kyle.jpg' />
+      </div>
       <div class='main'>
-        <h1 class='hidden-mobile'>Kyle Schmolze</h1>
+        <h1>Kyle Schmolze</h1>
         <h3>Companies</h3>
         <p><a href='https://www.groupmuse.com'>Groupmuse</a></p>
         <p><a href='https://www.jumpoffcampus.com'>JumpOffCampus</a></p>
@@ -29,34 +27,61 @@
         <p><a href='http://www.medium.com/kyletns'>Medium</a></p>
         <p><a href='http://www.github.com/kyletns'>Github</a></p>
       </div>
-      <div class='hanging-portrait hidden-mobile sticky'>
+      <div class='desktop-portrait sticky'>
         <img src='img/kyle.jpg' />
       </div>
     </section>
 
     <footer>
       <h3>About me</h3>
+
       <p>
-        It took me a while to realize that I’m very straightforwardly an entrepreneur.
+        I'm a software engineer and entrepreneur living in Berkeley, CA, currently working on my second company, 
+        <a href='https://www.groupmuse.com'>Groupmuse</a>,
+        which I love dearly and won't be leaving any time soon.
       </p>
+
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Sometimes I dodge the words "entrepreneur" and "startup"
+        due to my exposure to some of the more toxic elements of American startup culture.
+        However, that's silly, because 
+        I do believe that the internet is ultimately a democratizing force,
+        and I believe that technology can make the lives of
+        humans longer, stronger, happier, and healthier.
+        (Although it remains to be shown that the benefits will be well-distributed.
+        Let's work on that!)
       </p>
+
       <p>
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        I'm always on the search for new initiatives 
+        that combine technology and social good,
+        in the form of social enterprises, B-corps, worker cooperatives, 
+        or anything else! If you're involved in one, I'd love to
+        <a href='mailto:kyletns@gmail.com'>hear about it</a>.
+
       </p>
+
       <p>
-        If you have any questions, definitely just 
-        <a href='mailto:kyletns@gmail.com'>hit me up</a>.
+        You can also find me at groupmuses in the Bay Area,
+        or playing ultimate with 
+        <a href='http://iloveclassy.com/'>Classy</a>.
       </p>
+
+      <p>
+        ❤️
+        <br> - Kyle
+      </p>
+
     </footer>
     <script src="js/stickyfill.min.js"></script>
     <script type='text/javascript'>
-      var stickyElements = document.getElementsByClassName('sticky');
+      document.addEventListener("DOMContentLoaded", function(event) { 
+        var stickyElements = document.getElementsByClassName('sticky');
 
-      for (var i = stickyElements.length - 1; i >= 0; i--) {
-          Stickyfill.add(stickyElements[i]);
-      }
+        for (var i = stickyElements.length - 1; i >= 0; i--) {
+            Stickyfill.add(stickyElements[i]);
+        }
+      });
     </script>
   </body>
 </html>

@@ -26,6 +26,7 @@ section .main {
 section .hanging-portrait {
   width: 50%;
   float: left;
+  text-align: center;
 }
 
 footer {
@@ -34,7 +35,10 @@ footer {
 }
 footer a { text-decoration: underline; }
   
-img { width: 100%; }
+img {
+  width: 100%;
+  max-width: 400px;
+}
 
 h1 {
   font-size: 54px;
@@ -69,12 +73,18 @@ h1, h3, p, a { font-weight: 300; }
 .hidden-mobile { display: block; }
 .visible-mobile { display: none; }
 
+/*
 @media (max-width: 1020px) {
   section .main { padding: 54px; }
   h1 { font-size: 44px; }
   .hanging-portrait { padding: 54px 36px; }
   .hanging-portrait img { border-radius: 12px; }
 }
+*/
+section .main { padding: 54px; }
+h1 { font-size: 44px; }
+.hanging-portrait { padding: 54px 36px; }
+.hanging-portrait img { border-radius: 12px; }
 
 @media (max-width: 800px) {
   .hidden-mobile { display: none; }

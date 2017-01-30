@@ -89,6 +89,8 @@ h1, h3, p, a { font-weight: 300; }
     float: none;
     padding: 40px;
   }
+  .main h1 { display: none; }
+  .main h3:first-of-type { margin-top: 0; }
   .desktop-portrait { display: none; }
   footer { padding: 40px; }
 }

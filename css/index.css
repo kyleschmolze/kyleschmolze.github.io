@@ -4,42 +4,38 @@ html {
   color: white;
 }
 
-header, section {
+body {
   background: #FC7272;
 }
 
-header {
-  padding: 24px;
-  text-align: center;
+.home {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+}
+
+.main, .desktop-portrait {
+  width: 100%;
 }
 
 .main {
-  width: 50%;
-  float: left;
   padding: 74px;
 }
 
 .desktop-portrait {
-  width: 50%;
-  float: left;
-  text-align: center;
+  background-image: url(../img/kyle.jpg);
+  background-size: cover;
+  background-position: center center;
 }
 
-footer {
-  padding: 74px;
-  background: #3A3335;
-}
-footer a { text-decoration: underline; }
-  
 img {
   width: 100%;
 }
 
 h1 {
   font-size: 54px;
-  margin: 0px;
+  margin: 0 0 10px;
 }
-h1.mobile-header { display: none; }
 
 h3 {
   font-size: 16px;
@@ -49,6 +45,10 @@ h3 {
 }
 
 h3:first-child { margin-top: 0; }
+
+h1 { font-weight: 300; }  
+h3 { font-weight: 900; }  
+p { font-weight: 400; }  
 
 p {
   font-size: 24px;
@@ -64,67 +64,28 @@ a {
 
 a:hover { text-decoration: underline; }
 
-h1, h3, p, a { font-weight: 300; }  
-
 .mobile-portrait { display: none; }
 .desktop-portrait { display: block; }
 
+.mobile-portrait img { border-radius: 13px; }
+
 @media (max-width: 1020px) {
-  .main, footer { padding: 54px; }
-  h1 { font-size: 44px; }
-  .desktop-portrait { padding: 54px 36px; }
-  [class*=portrait] img { border-radius: 12px; }
-
-}
-
-@media (max-width: 800px) {
-  h1, .main, footer { padding: 40px; }
-
-  h1.mobile-header { display: block; text-align: center; }
-  .mobile-portrait { display: block; text-align: center; }
+  .header { display: block; text-align: center; }
+  .mobile-portrait {
+    display: block;
+    text-align: center;
+    margin: 40px 0;
+  }
   .mobile-portrait img { max-width: 400px; }
 
-  .main {
-    width: 100%;
-    float: none;
-    padding: 40px;
-  }
-  .main h1 { display: none; }
-  .main h3:first-of-type { margin-top: 0; }
+  .home { flex-direction: column; }
+  .main { padding: 40px; }
   .desktop-portrait { display: none; }
-  footer { padding: 40px; }
 }
 
-
-
-@media (max-width: 500px) {
-  h1, .main, footer { padding: 26px; }
+@media (max-width: 400px) {
+  .header, .content { padding: 0 20px; }
   h1 { font-size: 37px; }
-  .main { padding-top: 46px; padding-bottom: 36px; }
-  .mobile-portrait img { max-width: 100%; border-radius: 0px; }
-  footer { padding-top: 56px; }
+  .main { padding: 46px 0; }
+  .mobile-portrait img { border-radius: 0px; }
 }
-
-
-
-/* Other people's code */
-.group:after {
-	visibility: hidden;
-	display: block;
-	content: "";
-	clear: both;
-	height: 0;
-}
-* html .group             { zoom: 1; } /* IE6 */
-*:first-child+html .group { zoom: 1; } /* IE7 */
-
-.sticky {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-}
-.sticky:before, .sticky:after {
-  content: '';
-  display: table;
-}  
-

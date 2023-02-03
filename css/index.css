@@ -1,13 +1,14 @@
 * { box-sizing: border-box; }
 html {
   font-family: 'Quicksand', sans-serif;
-  color: white;
 }
 
 h1 {
   font-size: 54px;
   margin: 0 0 10px;
 }
+
+h2 { margin-top: 6px; }
 
 h3 {
   font-size: 16px;
@@ -23,20 +24,13 @@ p { font-weight: 400; }
 
 p {
   font-size: 24px;
-  opacity: 0.80;
   margin: 0 0 15px 0;
   line-height: 1.4;
 }
 
-a {
-  color: white;
-  text-decoration: none;
-}
-
-a:hover { text-decoration: underline; }
-
 body {
   background: #FC7272;
+  color: white;
 }
 
 header {
@@ -44,12 +38,32 @@ header {
   text-align: center;
 }
 
-.main {
+.post {
+  background: white;
+  opacity: 0.80;
+  color: #424242;
+  max-width: 730px;
+  margin: 0 auto 40px;
+  padding: 20px;
+  border-radius: 10px;
+}
+.post p {
+  font-size: 20px;
+  margin: 0 0 30px 0;
+  line-height: 1.7;
+}
+
+.home {
   width: 700px;
   margin: auto;
   display: flex;
   flex-direction: row-reverse;
 }
+.home a {
+  color: white;
+  text-decoration: none;
+}
+.home a:hover { text-decoration: underline; }
 
 .portrait, .content {
   width: 100%;
@@ -62,7 +76,7 @@ header {
 }
 
 @media (max-width: 740px) {
-  .main {
+  .home {
     width: auto;
     flex-direction: column;
   }

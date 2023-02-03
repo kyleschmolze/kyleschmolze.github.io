@@ -28,10 +28,17 @@ p {
   line-height: 1.4;
 }
 
+a { color: white; }
+a.secret { text-decoration: none; }
+a.secret:hover { text-decoration: underline; }
+
+
 body {
   background: #FC7272;
   color: white;
 }
+
+body.dark { background: hsl(0, 26.5%, 13.3%) }
 
 header {
   padding: 40px;
@@ -39,13 +46,9 @@ header {
 }
 
 .post {
-  background: white;
-  opacity: 0.80;
-  color: #424242;
   max-width: 730px;
   margin: 0 auto 40px;
   padding: 20px;
-  border-radius: 10px;
 }
 .post p {
   font-size: 20px;
@@ -59,11 +62,6 @@ header {
   display: flex;
   flex-direction: row-reverse;
 }
-.home a {
-  color: white;
-  text-decoration: none;
-}
-.home a:hover { text-decoration: underline; }
 
 .portrait, .content {
   width: 100%;

@@ -4,34 +4,6 @@ html {
   color: white;
 }
 
-body {
-  background: #FC7272;
-}
-
-.home {
-  display: flex;
-  flex-direction: row;
-  min-height: 100vh;
-}
-
-.main, .desktop-portrait {
-  width: 100%;
-}
-
-.main {
-  padding: 74px;
-}
-
-.desktop-portrait {
-  background-image: url(../img/kyle.jpg);
-  background-size: cover;
-  background-position: center center;
-}
-
-img {
-  width: 100%;
-}
-
 h1 {
   font-size: 54px;
   margin: 0 0 10px;
@@ -43,8 +15,7 @@ h3 {
   margin: 58px 0 15px;
   text-transform: uppercase;
 }
-
-h3:first-child { margin-top: 0; }
+h3:first-of-type { margin-top: 0; }
 
 h1 { font-weight: 300; }  
 h3 { font-weight: 900; }  
@@ -64,28 +35,46 @@ a {
 
 a:hover { text-decoration: underline; }
 
-.mobile-portrait { display: none; }
-.desktop-portrait { display: block; }
-
-.mobile-portrait img { border-radius: 13px; }
-
-@media (max-width: 1020px) {
-  .header { display: block; text-align: center; }
-  .mobile-portrait {
-    display: block;
-    text-align: center;
-    margin: 40px 0;
-  }
-  .mobile-portrait img { max-width: 400px; }
-
-  .home { flex-direction: column; }
-  .main { padding: 40px; }
-  .desktop-portrait { display: none; }
+body {
+  background: #FC7272;
 }
 
-@media (max-width: 400px) {
-  .header, .content { padding: 0 20px; }
+header {
+  padding: 40px;
+  text-align: center;
+}
+
+.main {
+  width: 700px;
+  margin: auto;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.portrait, .content {
+  width: 100%;
+}
+
+.portrait { text-align: center; }
+.portrait img {
+  border-radius: 13px;
+  max-width: 350px;
+}
+
+@media (max-width: 740px) {
+  .main {
+    width: auto;
+    flex-direction: column;
+  }
+  .content { padding: 40px 20px; }
+}
+
+@media (max-width: 500px) {
+  header { padding: 25px 20px 20px; }
   h1 { font-size: 37px; }
-  .main { padding: 46px 0; }
-  .mobile-portrait img { border-radius: 0px; }
+  .portrait img {
+    border-radius: 0px;
+    width: 100%;
+    max-width: 100%;
+  }
 }

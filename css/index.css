@@ -19,7 +19,7 @@ h3 {
   margin: 58px 0 15px;
   text-transform: uppercase;
 }
-h3:first-of-type { margin-top: 0; }
+h2:first-child, h3:first-child { margin-top: 0; }
 
 h1 { font-weight: 300; }  
 h2 { font-weight: 300; }  

@@ -8,7 +8,10 @@ h1 {
   margin: 0 0 10px;
 }
 
-h2 { margin-top: 6px; }
+h2 {
+  margin-top: 40px;
+  font-size: 26px;
+}
 
 h3 {
   font-size: 16px;
@@ -19,7 +22,8 @@ h3 {
 h3:first-of-type { margin-top: 0; }
 
 h1 { font-weight: 300; }  
-h3 { font-weight: 900; }  
+h2 { font-weight: 300; }  
+h3 { font-weight: 700; }  
 p { font-weight: 400; }  
 
 p {
@@ -27,6 +31,15 @@ p {
   margin: 0 0 15px 0;
   line-height: 1.4;
 }
+
+blockquote {
+  font-size: 28px;
+  line-height: 1.4;
+  font-weight: 300;
+  text-align: center;
+}
+
+b, strong { font-weight: 700; }
 
 a { color: white; }
 a.secret { text-decoration: none; }
@@ -38,7 +51,7 @@ body {
   color: white;
 }
 
-body.dark { background: hsl(0, 26.5%, 13.3%) }
+body.dark { background: hsl(0, 10.8%, 12.7%); }
 
 header {
   padding: 40px;
@@ -54,6 +67,18 @@ header {
   font-size: 20px;
   margin: 0 0 30px 0;
   line-height: 1.7;
+}
+.post img {
+  max-width: 80%;
+  margin: 0 auto 30px auto;
+  display: block;
+  border-radius: 5px;
+}
+.post .caption {
+  font-size: 18px;
+  opacity: 0.64;
+  margin: -15px 0 30px 0;
+  text-align: center;
 }
 
 .home {

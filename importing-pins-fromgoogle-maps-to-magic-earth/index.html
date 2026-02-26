@@ -1,0 +1,111 @@
+<html>
+	<head>
+		<title>Exporting Google Maps Saved Places to Magic Earth - Kyle Schmolze</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="How to export saved pins from Google Maps and import them into Magic Earth" />
+    <meta name="keywords" content="google maps, magic earth, saved places, pins, KML, export, import, privacy">
+    <meta name="author" content="Kyle Schmolze">
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,700" rel="stylesheet">
+		<link rel="stylesheet" href="../css/normalize.css" />
+		<link rel="stylesheet" href="../css/index.css" />
+	</head>
+	<body>
+    <header>
+      <h1>
+        <a href='/'>Kyle Schmolze</a>
+      </h1>
+    </header>
+    <div class='post'>
+      <h2>Exporting Google Maps Saved Places to Magic Earth</h2>
+
+      <p>I had Claude Code write this blog post after about an hour of working with it to get a saved-pin import working from Google Maps to Magic Earth, because I can't honestly test Magic Earth without my saved pins! Google has too much of a historical advantage there, so I wanted to get those pins popping up.</p>
+
+      <p>I did finally get it to work, but it was a pain - hence this post! I wanted to get my solution online in case it's helpful to anyone.</p>
+
+      <p>You can probably get pretty far just opening Claude Code in the Google Takeout directory and asking questions like I did, but maybe this post will shortcut the process for some people (or AIs).</p>
+
+      <h2>Goal</h2>
+
+      <p>Export saved pin lists (Starred places, Want to go, Travel plans) from Google Maps and import them into Magic Earth, a privacy-focused navigation app.</p>
+
+      <h2>Getting Your Data Out of Google</h2>
+
+      <p>Use <a href="https://takeout.google.com">Google Takeout</a>. All your saved pins live in <b>Saved</b> - not <b>Maps</b> or <b>Maps (your places)</b>. Your Takeout folder should have a <b>Saved</b> subfolder, that's what you want.</p>
+
+      <img src='../img/Saved.png' alt='Google Maps saved places' />
+
+      <h2>Which Files Are Your Lists</h2>
+
+      <p>The <code>Saved/</code> folder contains one CSV per list. The naming is not obvious:</p>
+
+      <table>
+        <tr><th>Google Maps List</th><th>Export Filename</th></tr>
+        <tr><td>Starred places</td><td><code>Favorite places.csv</code></td></tr>
+        <tr><td>Want to go</td><td><code>Want to go.csv</code></td></tr>
+        <tr><td>Travel plans</td><td><code>Default list.csv</code></td></tr>
+      </table>
+
+      <p>Custom lists (Japan, Italy, etc.) export under their original names.</p>
+
+      <p>The <code>Maps (your places)/Saved Places.json</code> file looks promising — it's GeoJSON — but every coordinate is <code>0,0</code> with a comment saying "No location information is available for this saved place." It's useless for this purpose.</p>
+
+      <h2>The Coordinate Problem</h2>
+
+      <p>The CSVs contain place names and Google Maps URLs, but no coordinates. The URLs contain Google Place IDs (the <code>!1s0x...</code> part of the URL). These can be resolved to real lat/lng coordinates using the Google Places API.</p>
+
+      <p>You need a Google Cloud API key with the Places API enabled. You're looking for a private key — browser-restricted ("public") keys will be rejected for server-side calls.</p>
+
+      <p>The API endpoint that works:</p>
+
+      <pre><code>https://maps.googleapis.com/maps/api/place/details/json?ftid=PLACE_ID&fields=geometry,name&key=YOUR_KEY</code></pre>
+
+      <p>Some URLs contain coordinates directly (e.g., <code>maps/search/37.123,-122.456</code> for dropped pins). Check for those first to avoid unnecessary API calls.</p>
+
+      <p>If you don't have an API key, Claude had other suggestions — free geocoders like Nominatim (OpenStreetMap), scraping coordinates from the Google Maps URL redirects, etc. I had an API key handy from other projects so I went with that and it worked first try.</p>
+
+      <h2>Magic Earth Import Format</h2>
+
+      <p>Magic Earth accepts KML files. It does not support GPX. KMZ (zipped KML) did not register as openable on iOS in my testing.</p>
+
+      <h2>Character Encoding Issues</h2>
+
+      <p>Magic Earth's KML parser silently fails on certain characters. The import stops partway through with no error message. Characters that caused failures:</p>
+
+      <ul>
+        <li>Accented characters (e.g., Peña, Maipú)</li>
+        <li>Apostrophes and single quotes</li>
+        <li>Emojis</li>
+        <li>HTML/XML entities like <code>&amp;#x27;</code></li>
+      </ul>
+
+      <p>The fix: strip all non-ASCII characters from <code>&lt;name&gt;</code> and <code>&lt;description&gt;</code> fields. Normalize unicode first (NFKD decomposition) to preserve base letters, then drop everything above ASCII 127. Remove apostrophes and quotes entirely.</p>
+
+      <h2>The 30-Pin Import Cap</h2>
+
+      <p>This was the hardest thing to diagnose. Magic Earth has an undocumented limit on how many placemarks it will import from a single KML file. In my testing, a 117-pin file resulted in only ~40 pins imported. No error, no warning — pins are silently dropped.</p>
+
+      <p>The fix: split KML files into chunks of 30 pins each. All pins import successfully at that size.</p>
+
+      <p>This means a list of 385 pins becomes 13 separate KML files that each need to be imported individually.</p>
+
+      <p>This is a pretty huge trade off, because each KML file becomes its own POI list in Magic Earth, so now I have ~25 lists representing what was 3 lists on Google. The good news is that you don't really need to interact with the lists at all - the pins just show up on the map and you can click them - that's all I needed.</p>
+
+      <h2>Doing This Yourself</h2>
+
+      <p>If you have Claude Code, the fastest path is:</p>
+
+      <pre><code>cd ~/Downloads/Takeout
+claude</code></pre>
+
+      <p>Then describe what you want — something like "convert my Google Maps saved places CSVs to KML files for Magic Earth." It will identify the right files, resolve coordinates through the API, handle the encoding cleanup, and split into importable chunks. You'll need to provide your Google Places API key.</p>
+
+      <h2>Importing</h2>
+
+      <p>Transfer the KML files to your phone. On iOS: AirDrop or email, tap the file, select "Open in Magic Earth." Each chunk must be imported separately.</p>
+
+    </div>
+    <script defer data-domain="kyleschmolze.com" src="https://plausible.io/js/script.js"></script>
+  </body>
+</html>

@@ -16,6 +16,21 @@
       <!--<h3>Aka "Seabass"</h3>-->
       <p>Music, software, cooperatives.</p>
     </header>
+    <div class='event-box' data-expires='2026-04-12T13:00:00-07:00'>
+      <div class='event-label'>Next event</div>
+      <a class='event-title' href='https://luma.com/y85pmnw8'>Unbroken Flow at the Lake w/ Seabass &amp; Marcus</a>
+      <div class='event-detail'>
+        <svg class='event-icon' viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Saturday, April 11, 11:00 AM &ndash; 1:00 PM
+      </div>
+      <div class='event-detail'>
+        <svg class='event-icon' viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <a href='https://www.google.com/maps/search/?api=1&query=Edoff%20Memorial%20Bandstand%20at%20Lake%20Merritt&query_place_id=ChIJSwLAGEyHj4ARXaFd0Ix4TkA'>Edoff Memorial Bandstand at Lake Merritt, Oakland, California</a>
+      </div>
+      <div class='event-buttons'>
+        <a class='btn' href='https://luma.com/y85pmnw8'>RSVP here</a>
+      </div>
+    </div>
     <div class='home'>
       <div class='portrait'>
         <img src='img/kyle.jpg' />
@@ -35,6 +50,10 @@
           <li>Burner</li>
           <li>Friendly face</li>
         </ul>
+        <a class='social-link' href='https://www.instagram.com/bass_wassup' target='_blank'>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          @bass_wassup
+        </a>
         <!--<h3>Companies</h3>
         <p><a class='secret' href='https://www.groupmuse.com'>Groupmuse</a></p>
         <p><a class='secret' href='https://www.jumpoffcampus.com'>JumpOffCampus</a></p>
@@ -80,6 +99,11 @@
       <h3><a href='mailto:public@kyletns.com'>Email me</a></h3>
       <img class='stella' src='img/stella.jpeg' />
     </div>
+    <script>
+      document.querySelectorAll('[data-expires]').forEach(function(el) {
+        if (new Date() > new Date(el.dataset.expires)) el.style.display = 'none';
+      });
+    </script>
     <script defer data-domain="kyleschmolze.com" src="https://plausible.io/js/script.js"></script>
   </body>
 </html>

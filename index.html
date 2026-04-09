@@ -16,21 +16,7 @@
       <!--<h3>Aka "Seabass"</h3>-->
       <p>Music, software, cooperatives.</p>
     </header>
-    <div class='event-box' data-expires='2026-04-12T13:00:00-07:00'>
-      <div class='event-label'>Next event</div>
-      <a class='event-title' href='https://luma.com/y85pmnw8'>Unbroken Flow at the Lake w/ Seabass &amp; Marcus</a>
-      <div class='event-detail'>
-        <svg class='event-icon' viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        Saturday, April 11, 11:00 AM &ndash; 1:00 PM
-      </div>
-      <div class='event-detail'>
-        <svg class='event-icon' viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        <a href='https://www.google.com/maps/search/?api=1&query=Edoff%20Memorial%20Bandstand%20at%20Lake%20Merritt&query_place_id=ChIJSwLAGEyHj4ARXaFd0Ix4TkA'>Edoff Memorial Bandstand at Lake Merritt, Oakland, California</a>
-      </div>
-      <div class='event-buttons'>
-        <a class='btn' href='https://luma.com/y85pmnw8'>RSVP here</a>
-      </div>
-    </div>
+    <div id='events'></div>
     <div class='home'>
       <div class='portrait'>
         <img src='img/kyle.jpg' />
@@ -103,8 +89,41 @@
       <img class='stella' src='img/stella.jpeg' />
     </div>
     <script>
-      document.querySelectorAll('[data-expires]').forEach(function(el) {
-        if (new Date() > new Date(el.dataset.expires)) el.style.display = 'none';
+      var clockIcon = '<svg class="event-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
+      var pinIcon = '<svg class="event-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+
+      fetch('events.json').then(function(r) { return r.json(); }).then(function(events) {
+        var now = new Date();
+        var container = document.getElementById('events');
+        events.forEach(function(e) {
+          if (!e.title) return;
+          if (e.expires && now > new Date(e.expires)) return;
+
+          var html = '<div class="event-box"><div class="event-label">Next event</div>';
+
+          if (e.rsvpUrl)
+            html += '<a class="event-title" href="' + e.rsvpUrl + '">' + e.title + '</a>';
+          else
+            html += '<div class="event-title">' + e.title + '</div>';
+
+          if (e.date)
+            html += '<div class="event-detail">' + clockIcon + ' ' + e.date + '</div>';
+
+          if (e.location) {
+            html += '<div class="event-detail">' + pinIcon + ' ';
+            if (e.locationUrl)
+              html += '<a href="' + e.locationUrl + '">' + e.location + '</a>';
+            else
+              html += e.location;
+            html += '</div>';
+          }
+
+          if (e.rsvpUrl)
+            html += '<div class="event-buttons"><a class="btn" href="' + e.rsvpUrl + '">RSVP here</a></div>';
+
+          html += '</div>';
+          container.innerHTML += html;
+        });
       });
     </script>
     <script defer data-domain="kyleschmolze.com" src="https://plausible.io/js/script.js"></script>
